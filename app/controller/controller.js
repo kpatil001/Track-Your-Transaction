@@ -79,11 +79,36 @@ exports.delete_a_trans = function(req, res) {
 
 exports.getTransBySource= function(req,res){
 	Transaction.getBySource(req.params.source, function(err, trans) {
+    console.log("error", err);
     if (err)
       res.send(err);
-	if(! Object.keys(trans).length)
-		res.json({message:"Record not found"});       
-    res.json(trans);
+	else if(! Object.keys(trans).length)
+		res.json({message:"Record not found"}); 
+	else	      
+    	res.json(trans);
   });
 
+};
+
+exports.getTransByTarget= function(req,res){
+	Transaction.getByTarget(req.params.target, function(err, trans) {
+    if (err)
+      res.send(err);  
+	else if(! Object.keys(trans).length )
+		res.json({message:"Record not found"});       
+    else 
+    	res.json(trans);
+  });
+};
+exports.getTransByAmount= function(req,res){
+	Transaction.getByAmount(req.params.amount, function(err, trans) {
+    if (err)
+      res.send(err);  
+	else if(! Object.keys(trans).length )
+		res.json({message:"Record not found"});       
+    else 
+    	res.json(trans);
+  });
+  
+  
 };

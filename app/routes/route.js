@@ -16,4 +16,10 @@ module.exports = function(app) {
     
 	app.route('/getTransBySource/:source')
 		.get(controller.getTransBySource);
+	
+	app.route('/getTransByTarget/:target')
+		.get(controller.getTransByTarget);	
+		
+	app.route('/getTransByAmount/:amount')
+		.get(controller.getTransByAmount);		
     };

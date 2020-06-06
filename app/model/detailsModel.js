@@ -109,13 +109,40 @@ Transaction.deleteById = function(id, func){
 };
 
 Transaction.getBySource = function (source, func) {
-        sql.query("Select * from details where sourceNumber = ? ", source, function (err, res) {             
+        sql.query("Select * from details where sourceNumber = ?", source, function (err, res) {             
                 if(err) {
                     console.log("error: ", err);
                     func(err, null);
                 }
                 else{
                 	console.log("getBySOurce", res);
+                    func(null, res);
+              
+                }
+            });   
+};
+
+Transaction.getByTarget = function (target, func) {
+        sql.query("Select * from details where targetNumber = ?", target, function (err, res) {             
+                if(err) {
+                    console.log("error: ", err);
+                    func(err, null);
+                }
+                else{
+                	console.log("getByTarget", res);
+                    func(null, res);
+              
+                }
+            });   
+};
+Transaction.getByAmount = function (amount, func) {
+        sql.query("Select * from details where amount = ?", amount, function (err, res) {             
+                if(err) {
+                    console.log("error: ", err);
+                    func(err, null);
+                }
+                else{
+                	console.log("getByTarget", res);
                     func(null, res);
               
                 }
