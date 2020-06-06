@@ -68,6 +68,12 @@ exports.delete_a_trans = function(req, res) {
 	Transaction.deleteById( req.params.transId, function(err, trans) {
     if (err)
       res.send(err);
-    res.json({ message: 'trans successfully deleted' });
+    console.log("Deleted response", trans) ; 
+    
+    if(trans.affectedRows > 0)
+    		res.json({message : 'Data successfully deleted'});
+    else{
+    	res.json({message : 'Record Not found'});
+    }  
   });
 };

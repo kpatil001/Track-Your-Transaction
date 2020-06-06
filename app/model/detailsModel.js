@@ -95,17 +95,17 @@ if(typeof newTrans.time == "undefined")
             }); 
 };
 
-// trans.remove = function(id, result){
-//      sql.query("DELETE FROM transs WHERE id = ?", [id], function (err, res) {
-// 
-//                 if(err) {
-//                     console.log("error: ", err);
-//                     result(null, err);
-//                 }
-//                 else{
-//                
-//                  result(null, res);
-//                 }
-//             }); 
-// };
+Transaction.deleteById = function(id, func){
+     sql.query("DELETE FROM details WHERE id = ?", [id], function (err, res) {
+
+                if(err) {
+                    console.log("error: ", err);
+                    func(err, null);
+                }
+                else{
+                 func(null, res);
+                }
+            }); 
+};
+
 module.exports= Transaction;
