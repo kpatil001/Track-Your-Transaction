@@ -1,18 +1,19 @@
 'use strict';
 module.exports = function(app) {
-  var transaction = require('../controller/controller.js');
+  var controller = require('../controller/controller.js');
+  // controller Routes
 
-  // transaction Routes
+	app.route('/addcontroller')
+		.post(controller.addTransaction);
   
-  app.route('/addTransaction')
-  	.post(transaction.addTransaction)
-  
-  app.route('/getAllTransaction')
-  	.get(transaction.getAllTrans)
+	app.route('/getAllcontroller')
+  		.get(controller.getAllTrans);
   	
-  	app.route('/transaction/:transId')
-    .get(transaction.get_a_trans)
-    .put(transaction.update_a_trans)
-    .delete(transaction.delete_a_trans);
+	app.route('/controller/:transId')
+    	.get(controller.get_a_trans)
+    	.put(controller.update_a_trans)
+    	.delete(controller.delete_a_trans);
     
+	app.route('/getTransBySource/:source')
+		.get(controller.getTransBySource);
     };

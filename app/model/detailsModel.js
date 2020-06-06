@@ -108,4 +108,17 @@ Transaction.deleteById = function(id, func){
             }); 
 };
 
+Transaction.getBySource = function (source, func) {
+        sql.query("Select * from details where sourceNumber = ? ", source, function (err, res) {             
+                if(err) {
+                    console.log("error: ", err);
+                    func(err, null);
+                }
+                else{
+                	console.log("getBySOurce", res);
+                    func(null, res);
+              
+                }
+            });   
+};
 module.exports= Transaction;

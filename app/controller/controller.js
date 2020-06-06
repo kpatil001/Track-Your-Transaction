@@ -44,7 +44,6 @@ exports.get_a_trans = function(req, res) {
   });
 };
 
-
 exports.update_a_trans = function(req, res) {
   Transaction.updateById(req.params.transId, new Transaction(req.body), function(err, trans) {
     
@@ -76,4 +75,15 @@ exports.delete_a_trans = function(req, res) {
     	res.json({message : 'Record Not found'});
     }  
   });
+};
+
+exports.getTransBySource= function(req,res){
+	Transaction.getBySource(req.params.source, function(err, trans) {
+    if (err)
+      res.send(err);
+	if(! Object.keys(trans).length)
+		res.json({message:"Record not found"});       
+    res.json(trans);
+  });
+
 };
