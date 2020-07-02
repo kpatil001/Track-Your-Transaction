@@ -14,7 +14,7 @@ var Transaction = function(transaction){
 
 Transaction.createTrans= function (newTrans, result) {    
 
-	if(typeof newTrans.time == "undefined")
+	if(typeof newTrans.time == "undefined" || newTrans.time==null || newTrans.time == "")
 		newTrans.time =new Date();
 	
 	if(newTrans.amount < 0 )

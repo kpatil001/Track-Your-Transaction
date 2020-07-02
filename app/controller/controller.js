@@ -1,6 +1,12 @@
 'use strict';
 
 var Transaction = require('../model/detailsModel.js');
+var path = require("path");
+
+exports.getIndex = function(req,res){
+	console.log("path :",path.join(process.cwd(),'/app/bundles/pages/index.html'));
+	res.sendFile(path.join(process.cwd(),'/app/bundles/pages/index.html'));
+};
 
 exports.addTransaction = function(req,res) {
 	var newTrans = new Transaction(req.body);
@@ -100,6 +106,7 @@ exports.getTransByTarget= function(req,res){
     	res.json(trans);
   });
 };
+
 exports.getTransByAmount= function(req,res){
 	Transaction.getByAmount(req.params.amount, function(err, trans) {
     if (err)
@@ -108,7 +115,7 @@ exports.getTransByAmount= function(req,res){
 		res.json({message:"Record not found"});       
     else 
     	res.json(trans);
-  });
-  
-  
+  }); 
 };
+
+
